@@ -1,16 +1,22 @@
 import styled from 'styled-components';
 
-export const Button = styled.button`
-  font-size: 2.2rem;
+type ButtonProps = {
+  $small?: boolean;
+  $isCentered?: boolean;
+  $borderColor?: string;
+};
+export const Button = styled.button<ButtonProps>`
+  font-size: ${(props) => (props.$small ? '1.8rem' : '2.2rem')};
   font-weight: 700;
   line-height: 2.8rem;
+  display: block;
   background-color: transparent;
   color: var(--color-main-text);
-  padding: 1.4rem 4rem;
+  padding: ${(props) => (props.$small ? '1rem 2rem' : '1.4rem 4rem')};
   border: 1px solid var(--color-pink);
   position: relative;
   cursor: pointer;
-  margin: 0 1.2rem;
+  margin: 0 ${(props) => (props.$isCentered ? 'auto' : '1.2rem')};
   transition: background-color 0.2s ease-in;
 
   &::after,
@@ -29,7 +35,6 @@ export const Button = styled.button`
   }
 
   &::after {
-    /* border-left: 0.8rem solid transparent; */
     right: -1.1rem;
   }
 
@@ -42,12 +47,40 @@ export const Button = styled.button`
 
     &::after {
       right: -1.2rem;
-      border-color: var(--color-bg);
+      border-color: ${(props) => props.$borderColor || 'var(--color-bg);'};
     }
 
     &::before {
-      border-color: var(--color-bg);
+      border-color: ${(props) => props.$borderColor || 'var(--color-bg);'};
       left: -1.2rem;
+    }
+  }
+
+  &:disabled {
+    border-color: var(--color-error);
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &::after,
+    &::before {
+      border: 0.5rem solid transparent;
+      background-color: var(--color-error);
+    }
+    &::after {
+      right: -1.1rem;
+    }
+
+    &::before {
+      left: -1.1rem;
+    }
+    &:hover {
+      background-color: transparent;
+
+      &::after,
+      &::before {
+        border: 0.5rem solid transparent;
+        background-color: var(--color-error);
+      }
     }
   }
 `;

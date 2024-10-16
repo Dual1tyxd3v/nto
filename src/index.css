@@ -2,18 +2,24 @@
   font-family: 'Roboto';
   font-weight: 400;
   src: url(./assets/fonts/Roboto-Regular.ttf);
+  font-display: swap;
 }
 @font-face {
   font-family: 'Roboto';
   font-weight: 700;
   src: url(./assets/fonts/Roboto-Bold.ttf);
+  font-display: swap;
 }
 
 :root {
   --color-bg: #140c1f;
   --color-text-main: #fff;
-  --color-pink: #7e22ce;
+  --color-pink: rgb(126, 34, 206);
   --color-grey: #a7a7a7;
+  --color-success: #84cc16;
+  --color-error: #dc2626;
+  --color-btn-bg: rgba(248, 29, 251, 0.05);
+  --shadow: 5px 5px 12px rgba(126, 34, 206, 0.6), -5px -5px 12px rgba(126, 34, 206, 0.6);
 }
 
 *,
@@ -22,6 +28,14 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+input[type='radio'] {
+  accent-color: var(--color-pink);
 }
 
 html {
@@ -40,4 +54,10 @@ ul {
 
 a {
   text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
