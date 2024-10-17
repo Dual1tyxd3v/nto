@@ -13,7 +13,6 @@ const Wrapper = styled.div`
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
   padding: 1rem 1.2rem;
   width: 39.4rem;
-  cursor: pointer;
   transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
 
   &:hover {
@@ -87,11 +86,30 @@ const InfoBlock = styled.div<InfoBlockProps>`
   }
 `;
 
+const DetailsButton = styled.button`
+  display: block;
+  margin: 0 auto 1rem;
+  background-color: transparent;
+  font-size: 1.6rem;
+  border: none;
+  color: var(--color-pink);
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 700;
+  opacity: 0.7;
+  transition: opacity .2s ease-in;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
 type CardProps = {
   data: ObjectType;
+  showDetails: (data: ObjectType) => void;
 };
 
-export default function Card({ data }: CardProps) {
+export default function Card({ data, showDetails }: CardProps) {
   const navigate = useNavigate();
 
   const { id, name, img, location, dateStarted, dateEnded, price, profit } = data;
@@ -121,6 +139,7 @@ export default function Card({ data }: CardProps) {
           </p>
         </div>
       </InfoBlock>
+      <DetailsButton onClick={() => showDetails(data)}>Детали</DetailsButton>
       <Button
         $small
         $isCentered

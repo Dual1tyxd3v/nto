@@ -18,6 +18,7 @@
   --color-grey: #a7a7a7;
   --color-success: #84cc16;
   --color-error: #dc2626;
+  --color-wip: #e9c24a;
   --color-btn-bg: rgba(248, 29, 251, 0.05);
   --shadow: 5px 5px 12px rgba(126, 34, 206, 0.6), -5px -5px 12px rgba(126, 34, 206, 0.6);
 }
