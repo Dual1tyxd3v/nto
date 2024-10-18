@@ -15,6 +15,10 @@ const Wrapper = styled.div`
   padding: 2rem 0;
   border-bottom: 1px solid var(--color-pink);
   gap: 4rem;
+
+  @media (max-width: 1020px) {
+    gap: 2rem;
+  }
 `;
 
 const Field = styled.div`

@@ -11,6 +11,10 @@ const Head = styled.header`
   justify-content: space-between;
   gap: 4rem;
   flex-wrap: wrap;
+
+  @media (max-width: 1200px) {
+    padding: 0 1rem 2rem;
+  }
 `;
 
 const P = styled.p`
@@ -21,6 +25,10 @@ const P = styled.p`
 
   & span {
     color: var(--color-text-main);
+  }
+
+  @media (max-width: 440px) {
+    font-size: 2rem;
   }
 `;
 

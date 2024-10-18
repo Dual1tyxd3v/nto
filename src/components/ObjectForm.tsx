@@ -30,6 +30,11 @@ const Wrapper = styled.div`
   display: flex;
   gap: 1.5rem;
   flex-direction: column;
+  padding: 1rem 0;
+
+  @media (max-width: 440px) {
+    min-width: 50rem;
+  }
 `;
 
 type PreviewBlockProps = {
@@ -64,6 +69,10 @@ const ExpenseField = styled.div`
   display: flex;
   align-items: center;
   gap: 2rem;
+
+  @media (max-width: 440px) {
+    display: block;
+  }
 `;
 
 const Title = styled.h3`
@@ -92,6 +101,20 @@ const Buttons = styled.div`
 const SmallImage = styled.img`
   width: 5rem;
   min-width: 5rem;
+`;
+
+const FieldWrapper = styled.div`
+  display: flex;
+  gap: 2rem;
+
+  @media (max-width: 440px) {
+    width: 100%;
+    justify-content: space-between;
+
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
 `;
 
 type ObjectFormProps = {
@@ -252,44 +275,48 @@ export default function ObjectForm({ data }: ObjectFormProps) {
             const key = `${i}_expense`;
             return (
               <ExpenseField key={key}>
-                <InputText
-                  $small
-                  $align="right"
-                  data-id={i}
-                  data-name="name"
-                  placeholder="Наименование"
-                  required
-                  value={formData.expenses[i].name}
-                  onChange={onExpenseChangeHandler}
-                  $maxWidth="28rem"
-                />
-                <InputText
-                  $small
-                  $align="right"
-                  $color="var(--color-error)"
-                  data-id={i}
-                  data-name="amount"
-                  placeholder="Цена"
-                  type="number"
-                  min={0}
-                  required
-                  value={formData.expenses[i].amount}
-                  onChange={onExpenseChangeHandler}
-                  $maxWidth="28rem"
-                />
-                <InputFile
-                  small
-                  value={formData.expenses[i].img}
-                  changeValue={(v: File) => onExpenseImageHandler(v, i)}
-                  width="8.4rem"
-                />
-                {<SmallImage src={getImageSrc(formData.expenses[i].img)} />}
-                <ButtonDelete onClick={() => onDeleteExpense(i)} />
+                <FieldWrapper>
+                  <InputText
+                    $small
+                    $align="right"
+                    data-id={i}
+                    data-name="name"
+                    placeholder="Наименование"
+                    required
+                    value={formData.expenses[i].name}
+                    onChange={onExpenseChangeHandler}
+                    $maxWidth="28rem"
+                  />
+                  <InputText
+                    $small
+                    $align="right"
+                    $color="var(--color-error)"
+                    data-id={i}
+                    data-name="amount"
+                    placeholder="Цена"
+                    type="number"
+                    min={0}
+                    required
+                    value={formData.expenses[i].amount}
+                    onChange={onExpenseChangeHandler}
+                    $maxWidth="28rem"
+                  />
+                </FieldWrapper>
+                <FieldWrapper>
+                  <InputFile
+                    small
+                    value={formData.expenses[i].img}
+                    changeValue={(v: File) => onExpenseImageHandler(v, i)}
+                    width="8.4rem"
+                  />
+                  {<SmallImage src={getImageSrc(formData.expenses[i].img)} />}
+                  <ButtonDelete onClick={() => onDeleteExpense(i)} />
+                </FieldWrapper>
               </ExpenseField>
             );
           })}
         <Field>
-          <ButtonSecondary $isCentered onClick={onAddExpense}>
+          <ButtonSecondary type="button" $isCentered onClick={onAddExpense}>
             Добавить строку
           </ButtonSecondary>
         </Field>
