@@ -40,7 +40,7 @@ const Title = styled.h3<TitleProps>`
 `;
 
 const Img = styled.img`
-  width: 70rem;
+  max-width: 70rem;
   border-radius: 15px;
   margin-bottom: 1rem;
 `;
